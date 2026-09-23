@@ -299,6 +299,111 @@ select truncate (12222.25655,0);
 select truncate (12222.25655,-1);
 
 
+-- 23-09-2026
+
+USE T388;
+
+-- EXPONENTIAL
+select exp(5);
+select exp(2);
+
+-- POWER
+select pow(4,5);
+select pow(2,3);
+
+--  SQUARE ROOT
+
+select sqrt(16);
+select sqrt(144);
+
+
+-- STRING FUNCTION
+
+-- CONCAT
+
+select concat ("Good"," ","Morning") as remarks;
+select concat ("GOOD"," ","NIGHT") as remark;
+
+select *,concat(fullname," ",department) as code from employee;
+
+select*,concat(fullname,"@itvedant") as email from employee;
+
+
+-- LOWER & UPPER
+
+select *,lower(fullname) as newname, upper (fullname) as CAPITALNAME from employee;
+select *,upper (address) as newlocation from employee;
+select *,lower (fullname) as newname from employee;
+select *, upper (fullname) as capitalname from employee;
+
+select * from employee;
+alter table employee add EMAIL varchar(50);
+
+update employee set EMAIL =concat(fullname,"@gmail.com");
+
+-- REPLACE
+
+select replace ("Hello Everyone, Good Morning","Morning","Night");
+select replace ("Hello Everyone, Good Morning","Everyone","Maithili") as statement;
+select fullname,replace (fullname,"Jones","Patil") as changed from employee;
+select fullname,replace (fullname,"Mary","Steve") as changed from employee;
+select fullname,replace (fullname,"Hina","Rohit") as changed from employee;
+
+-- REVERSE
+select fullname,replace (fullname,"Hina","Rohit") as changed, reverse(fullname) from employee;
+
+-- LENGTH
+
+select salary, length (salary) from employee;
+select fullname, length(fullname) from employee;
+
+-- SUBSTRING
+
+select substring("Maharashtra",1,6);
+select substring("Sujal",1,3);
+
+
+-- TRIM,LTRIM & RTRIM
+
+
+-- SUB_QUERIES
+
+select * from employee;
+
+select age from employee where employeeid =1002;
+select age from employee where fullname="Mary Smith";
+
+select * from employee
+where age=(select age from employee where fullname="Mary Smith");
+
+select salary from employee where FullName="john doe";
+
+select * from employee
+where salary=(select salary from employee where FullName="john doe");
+
+select department from employee where fullname ="john doe";
+
+select * from employee
+where Department=(select department from employee where fullname ="john doe");
+-- first highest salary
+select max(salary) from employee;
+-- second highest salary
+select max(salary) from employee where salary <(select max(salary) from employee);
+-- third highest salary
+select max(salary) from employee
+where salary<(select max(salary) from employee where salary <(select max(salary) from employee)); 
+
+select min(salary) from employee;
+select min(salary) from employee where salary >(select min(salary) from employee);
+
+
+
+
+
+
+
+
+
 
 
 
