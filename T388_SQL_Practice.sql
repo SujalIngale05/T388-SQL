@@ -366,6 +366,8 @@ select substring("Sujal",1,3);
 -- TRIM,LTRIM & RTRIM
 
 
+
+
 -- SUB_QUERIES
 
 select * from employee;
@@ -396,6 +398,52 @@ where salary<(select max(salary) from employee where salary <(select max(salary)
 select min(salary) from employee;
 select min(salary) from employee where salary >(select min(salary) from employee);
 
+
+-- 24-09-2026
+use t388;
+-- Multiple Row Subquery
+
+select * from employee;
+-- USING IN SUBQUERY
+
+select age from employee where employeeid in (1002,1003);
+select * from employee where age = (select age from employee where employeeid in (1002,1003));
+select * from employee where age in (select age from employee where employeeid in (1002,1003));
+
+-- USING ANY IN SUBQUERY
+
+select distinct salary from employee;
+
+select * from employee where
+salary >any(select salary from employee where employeeid between 1001 and 1003);
+
+select * from employee where 
+salary >any(select salary from employee where EmployeeId between 1006 and 1010);
+
+select * from employee where
+salary <any(select salary from employee where employeeid between 1001 and 1003);
+
+-- USING ALL IN SUBQUERY
+
+select * from employee where
+salary >all(select salary from employee where employeeid between 1001 and 1003);
+
+select * from employee where
+salary <all(select salary from employee where employeeid between 1001 and 1003);
+
+
+
+-- JOINS
+
+
+
+
+
+
+
+
+
+ 
 
 
 
