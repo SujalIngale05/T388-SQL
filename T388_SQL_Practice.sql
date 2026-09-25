@@ -433,7 +433,33 @@ salary <all(select salary from employee where employeeid between 1001 and 1003);
 
 
 
+-- 25-09-2026
+
+use t388;
+
 -- JOINS
+
+select * from names_t388;
+select * from salary_t388;
+show tables;
+
+-- INNER JOIN
+
+select salary_t388.id,names,salary from names_t388 join salary_t388 on names_t388.id = salary_t388.id;
+
+-- LEFT JOIN
+
+select names_t388.id,names,salary from names_t388 left join salary_t388 on names_t388.id = salary_t388.id;
+
+-- RIGHT JOIN 
+
+select names_t388.id,names, salary from salary_t388 right join names_t388 on names_t388.id = salary_t388.id; 
+
+select salary_t388.id,names, salary from names_t388 right join salary_t388 on names_t388.id = salary_t388.id;
+
+
+
+
 
 
 
