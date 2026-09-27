@@ -365,9 +365,12 @@ select substring("Sujal",1,3);
 
 -- TRIM,LTRIM & RTRIM
 
+select fullname,length(fullname),ltrim(fullname),length(ltrim(fullname)),rtrim(fullname),length(rtrim(fullname)) from trimmer;
 
+select fullname, length(fullname) as actual_length,ltrim(fullname) as lefttrim,length(ltrim(fullname)) as length_ltrim,rtrim(fullname) as righttrim,length(rtrim(fullname)) as length_rtrim,
+trim(fullname) as alltrim,length(trim(fullname)) as length_alltrim from trimmer;
 
-
+ 
 -- SUB_QUERIES
 
 select * from employee;
@@ -376,7 +379,7 @@ select age from employee where employeeid =1002;
 select age from employee where fullname="Mary Smith";
 
 select * from employee
-where age=(select age from employee where fullname="Mary Smith");
+where age=(select age from employee where fullname="Mary Smith");   
 
 select salary from employee where FullName="john doe";
 
@@ -415,10 +418,10 @@ select * from employee where age in (select age from employee where employeeid i
 select distinct salary from employee;
 
 select * from employee where
-salary >any(select salary from employee where employeeid between 1001 and 1003);
+salary >any(select salary from employee where employeeid in (1001 , 1003));
 
 select * from employee where 
-salary >any(select salary from employee where EmployeeId between 1006 and 1010);
+salary >any(select salary from employee where EmployeeId in (1006 , 1010));
 
 select * from employee where
 salary <any(select salary from employee where employeeid between 1001 and 1003);
@@ -445,17 +448,26 @@ show tables;
 
 -- INNER JOIN
 
-select salary_t388.id,names,salary from names_t388 join salary_t388 on names_t388.id = salary_t388.id;
+select names,salary from names_t388 join salary_t388 
+on names_t388.id = salary_t388.id;
 
 -- LEFT JOIN
 
-select names_t388.id,names,salary from names_t388 left join salary_t388 on names_t388.id = salary_t388.id;
+select * from names_t388 left join salary_t388
+on names_t388.ID=salary_t388.ID;
+
+select * from salary_t388 left join names_t388
+on salary_t388.ID=names_t388.ID;
 
 -- RIGHT JOIN 
 
-select names_t388.id,names, salary from salary_t388 right join names_t388 on names_t388.id = salary_t388.id; 
+select * from names_t388 right join salary_t388
+on names_t388.ID=salary_t388.ID;
+ 
+select * from salary_t388 right join names_t388
+on salary_t388.ID=names_t388.ID;
 
-select salary_t388.id,names, salary from names_t388 right join salary_t388 on names_t388.id = salary_t388.id;
+
 
 
 
