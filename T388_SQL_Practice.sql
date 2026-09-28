@@ -488,6 +488,23 @@ union
 select n.id as Name_ID,s.id as Salary_ID,names,salary from names_t388 as n right join salary_t388 as s
 on s.id=n.id;
 
+-- UNION ALL
+
+select n.id as Name_ID,s.id as Salary_ID,names,salary from names_t388 as n left join salary_t388 as s
+on s.id=n.id
+
+union all
+
+select n.id as Name_ID,s.id as Salary_ID,names,salary from names_t388 as n right join salary_t388 as s
+on s.id=n.id;
+
+select * from names_t388;
+select * from salary_t388;
+
+
+
+
+
 
 
 
