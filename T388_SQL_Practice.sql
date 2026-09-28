@@ -451,6 +451,9 @@ show tables;
 select names,salary from names_t388 join salary_t388 
 on names_t388.id = salary_t388.id;
 
+select * from names_t388 join salary_t388
+on names_t388.ID=salary_t388.ID;
+
 -- LEFT JOIN
 
 select * from names_t388 left join salary_t388
@@ -459,13 +462,37 @@ on names_t388.ID=salary_t388.ID;
 select * from salary_t388 left join names_t388
 on salary_t388.ID=names_t388.ID;
 
+select * from salary_t388 join names_t388
+on salary_t388.ID=names_t388.ID;
+
 -- RIGHT JOIN 
 
 select * from names_t388 right join salary_t388
 on names_t388.ID=salary_t388.ID;
- 
-select * from salary_t388 right join names_t388
+
+ select * from salary_t388 right join names_t388
 on salary_t388.ID=names_t388.ID;
+
+select * from names_t388 join salary_t388
+on names_t388.ID=salary_t388.ID;
+
+-- 28-09-2026
+use t388;
+-- FULL OUTER JOIN (UNION)
+
+select n.id as Name_ID,s.id as Salary_ID,names,salary from names_t388 as n left join salary_t388 as s
+on s.id=n.id
+
+union
+
+select n.id as Name_ID,s.id as Salary_ID,names,salary from names_t388 as n right join salary_t388 as s
+on s.id=n.id;
+
+
+
+
+
+
 
 
 
