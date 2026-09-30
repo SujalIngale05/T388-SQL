@@ -503,6 +503,14 @@ select * from salary_t388;
 
 
 
+-- 30-09-2026
+
+-- FOREIGN KEY
+
+
+
+
+
 
 
 
