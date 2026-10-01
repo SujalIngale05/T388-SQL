@@ -573,7 +573,7 @@ FullName,
 Department,
 Age,
 Salary,
-lag(salary,1,0) over (ORDER BY SALARY) as PreviousEmployeeSalaryByAge
+lag(salary,2,0) over (ORDER BY SALARY) as PreviousEmployeeSalaryByAge
 from employee
 order by SALARY;
 
@@ -607,7 +607,7 @@ Department,
 Age,
 Salary,
 lead(salary,2,0) over (ORDER BY SALARY) as PreviousEmployeeSalaryByAge,
-(salary -(lag(salary,1,0) over (order by salary))) as diff
+(salary -(lag(salary,2,0) over (order by salary))) as diff
 from employee
 order by SALARY;
 
