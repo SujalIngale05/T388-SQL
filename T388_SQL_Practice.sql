@@ -507,7 +507,119 @@ select * from salary_t388;
 
 -- FOREIGN KEY
 
+-- 01-10-2026
+-- RANKING WINDOW FUNCTIONS 
+-- USE T388;
+-- Row_Number()
+select * from employee;
+select EmployeeID,
+       FullName,
+       Department,
+       Salary,
+       row_number() over (partition by Department) as RankInDepartment
+       from employee;
+       
+select
+       FullName,
+       Department,
+       Salary,
+       row_number() over (partition by Salary) as Rank_In_Salary
+       from employee order by salary asc;
+       
+-- Rank()
 
+select fullname,salary, rank() over (order by salary) as Rank_InDepartment
+from employee;       
+
+-- Dense_Rank()
+select fullname,salary, dense_rank() over (order by salary) as Rank_InDepartment
+from employee; 
+
+
+
+-- AGGREGATE WINDOW FUNCTIONS
+select 
+EmployeeID,
+FullName,
+Department,
+Salary,
+avg(Salary) over (partition by Department) as DepartmentAVGSalary,
+sum(Salary) over (partition by Department) as DepartmentTotalSalary
+from employee order by department,salary desc;
+
+select
+EmployeeID,
+FullName,
+Department,
+Salary,
+avg(Salary) over (partition by Department) as DepartmentAVGSalary,
+sum(Salary) over (partition by Department) as DepartmentTotalSalary
+from employee where Gender="female" order by Department,Salary desc;
+
+-- LAG WINDOW FUNCTION
+select 
+EmployeeID,
+FullName,
+Department,
+Age,
+Salary,
+lag(salary,1,0) over (partition by Department order by age asc) as PreviousEmployeeSalaryByAge
+from employee
+order by department,age;
+
+select 
+EmployeeID,
+FullName,
+Department,
+Age,
+Salary,
+lag(salary,1,0) over (ORDER BY SALARY) as PreviousEmployeeSalaryByAge
+from employee
+order by SALARY;
+
+select 
+EmployeeID,
+FullName,
+Department,
+Age,
+Salary,
+lag(salary,1,0) over (ORDER BY SALARY) as PreviousEmployeeSalaryByAge,
+(salary -(lag(salary,1,0) over (order by salary))) as diff
+from employee
+order by SALARY;
+
+-- LEAD WINDOW FUNCTION
+
+select 
+EmployeeID,
+FullName,
+Department,
+Age,
+Salary,
+lead(salary,1,0) over (ORDER BY SALARY) as PreviousEmployeeSalaryByAge
+from employee
+order by SALARY;
+
+select 
+EmployeeID,
+FullName,
+Department,
+Age,
+Salary,
+lead(salary,2,0) over (ORDER BY SALARY) as PreviousEmployeeSalaryByAge,
+(salary -(lag(salary,1,0) over (order by salary))) as diff
+from employee
+order by SALARY;
+
+
+
+
+
+
+
+       
+       
+       
 
 
 
