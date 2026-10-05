@@ -612,6 +612,55 @@ from employee
 order by SALARY;
 
 
+-- 5-10-2026
+
+use t388;
+-- SELF JOIN
+
+select * from employee_manager_sql;
+
+select 
+E.Emp_id,E.Emp_name AS Employees,
+M.Emp_name AS Manager
+from employee_manager_sql as E
+left join
+employee_manager_sql as M 
+on M.Emp_id= E.Manager_id;
+
+-- CROSS JOIN
+
+select * from chess_team_a;
+select * from chess_team_b;
+
+select id, Team_B_ID,A.NAME,B.NAME
+from
+chess_team_a as A
+cross join
+chess_team_b as B;
+
+-- VIEWS 
+
+create view t388_view1 as
+select id, Team_B_ID,A.NAME as name_a,B.NAME AS name_B
+from
+chess_team_a as A
+cross join
+chess_team_b as B; 
+
+select * from t388_view1;
+
+-- CTE
+
+with T388_CTE AS (select id, Team_B_ID,A.NAME as name_a,B.NAME AS name_B
+from 
+chess_team_a as A
+cross join
+chess_team_b as B)
+select * from t388_cte;
+
+
+
+
 
 
 
